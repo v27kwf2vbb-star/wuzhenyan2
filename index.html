@@ -87,14 +87,15 @@
             <span class="module-card__arrow" aria-hidden="true">›</span>
           </button>
 
-          <button class="module-card is-pending" type="button" data-feature="AI体质自测">
+          <button class="module-card module-card--active" id="quiz-entry" type="button" aria-controls="quiz-view" aria-expanded="false">
             <span class="module-card__index">04</span>
             <span class="module-card__icon" aria-hidden="true">
               <svg viewBox="0 0 48 48"><path d="M13 37c1-7 5-11 11-11s10 4 11 11M24 24a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z"/><path d="M35 10v8M31 14h8"/></svg>
             </span>
             <span class="module-card__content">
               <strong>AI体质自测</strong>
-              <small>自测体质特征</small>
+              <small>26 题自测九种体质特征，依据 GB/T 46939-2025</small>
+              <em>已开放 · 点击查看</em>
             </span>
             <span class="module-card__arrow" aria-hidden="true">›</span>
           </button>
@@ -226,6 +227,107 @@
       </aside>
 
       <p class="knowledge__end">— 珍材入燕 · 食养新生 —</p>
+    </section>
+
+    <section class="quiz" id="quiz-view" aria-labelledby="quiz-title" hidden>
+      <div class="knowledge__header">
+        <button class="back-button" id="quiz-close" type="button" aria-label="返回首页">
+          <span aria-hidden="true">‹</span> 返回首页
+        </button>
+        <div class="knowledge__mini-brand">
+          <img src="logo.jpg" alt="">
+          <span>体质自测</span>
+        </div>
+      </div>
+
+      <!-- 第一步：说明 -->
+      <div class="quiz-stage" id="quiz-intro">
+        <div class="knowledge__title-wrap">
+          <span class="seal" aria-hidden="true">自测</span>
+          <div>
+            <p>AI CONSTITUTION TEST</p>
+            <h2 id="quiz-title">AI体质自测</h2>
+          </div>
+        </div>
+
+        <article class="standard-card">
+          <span class="standard-card__badge">GB/T 46939-2025</span>
+          <p>本自测依据国家标准《中医体质分类与判定》编制，通过 26 道题判定平和质与八种偏颇体质的倾向，用于健康科普自测，<strong>不替代医疗诊断</strong>。</p>
+          <div class="standard-card__stats">
+            <span><b>26</b>道题目</span>
+            <span><b>9</b>种体质</span>
+            <span><b>3</b>分钟左右</span>
+          </div>
+        </article>
+
+        <div class="ingredients-heading">
+          <div><span>◆</span><h3>答题说明</h3></div>
+          <p>近一年的真实感受</p>
+        </div>
+
+        <article class="intro-card quiz-guide">
+          <p>请根据<strong>近一年</strong>的真实感受作答，每题只选一个分值，逐题作答、请勿漏答。作答进度会暂存在本机浏览器中，中途离开可继续。</p>
+          <ul class="scale-legend">
+            <li><i>1</i><span>没有<small>根本不</small></span></li>
+            <li><i>2</i><span>很少<small>有一点</small></span></li>
+            <li><i>3</i><span>有时<small>有些</small></span></li>
+            <li><i>4</i><span>经常<small>相当</small></span></li>
+            <li><i>5</i><span>总是<small>非常</small></span></li>
+          </ul>
+        </article>
+
+        <button class="quiz-primary" id="quiz-start" type="button">开始自测</button>
+        <button class="quiz-secondary" id="quiz-resume" type="button" hidden>继续上次作答</button>
+
+        <aside class="notice">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v5M12 17h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <p>测试结果仅供健康科普参考，不构成医学诊断或治疗建议；如有不适，请及时就医。</p>
+        </aside>
+      </div>
+
+      <!-- 第二步：答题 -->
+      <div class="quiz-stage" id="quiz-run" hidden>
+        <div class="quiz-progress">
+          <div class="quiz-progress__meta">
+            <span>第 <b id="quiz-current">1</b> / <i id="quiz-total">26</i> 题</span>
+            <span id="quiz-percent">0%</span>
+          </div>
+          <div class="quiz-progress__bar"><i id="quiz-bar"></i></div>
+        </div>
+
+        <article class="question-card">
+          <span class="question-card__index" aria-hidden="true">Q<b id="quiz-no">01</b></span>
+          <h3 id="quiz-question">您精力充沛吗？</h3>
+          <p class="question-card__note" id="quiz-note" hidden></p>
+        </article>
+
+        <div class="option-list" id="quiz-options" role="radiogroup" aria-labelledby="quiz-question"></div>
+
+        <div class="quiz-nav">
+          <button class="quiz-secondary quiz-secondary--slim" id="quiz-prev" type="button">‹ 上一题</button>
+          <small>选择后自动进入下一题</small>
+        </div>
+      </div>
+
+      <!-- 第三步：结果 -->
+      <div class="quiz-stage" id="quiz-result" hidden>
+        <div class="knowledge__title-wrap">
+          <span class="seal" aria-hidden="true">结果</span>
+          <div>
+            <p>TEST RESULT</p>
+            <h2>体质自测结果</h2>
+          </div>
+        </div>
+
+        <div id="quiz-result-body"></div>
+
+        <div class="quiz-actions">
+          <button class="quiz-secondary" id="quiz-retry" type="button">重新自测</button>
+          <button class="quiz-primary quiz-primary--slim" id="quiz-home" type="button">返回首页</button>
+        </div>
+
+        <p class="knowledge__end">— 珍材入燕 · 食养新生 —</p>
+      </div>
     </section>
   </main>
 
